@@ -20,7 +20,10 @@ create table nhan_vien(
   luong double, 
   so_dien_thoai varchar(45), 
   email varchar(45), 
-  dia_chi varchar(45)
+  dia_chi varchar(45), 
+  ma_vi_tri int, 
+  ma_trinh_do int, 
+  ma_bo_phan int
 );
 create table loai_khach(
   ma_loai_khach int primary key, 
@@ -28,6 +31,7 @@ create table loai_khach(
 );
 create table khach_hang(
   ma_khach_hang int primary key, 
+  ma_loai_khach int, 
   ho_ten varchar(45), 
   ngay_sinh date, 
   gioi_tinh bit(1), 
@@ -41,7 +45,7 @@ create table loai_dich_vu(
   ten_loai_dich_vu varchar(45)
 );
 create table kieu_thue(
-  ma_kieu_thue int, 
+  ma_kieu_thue int primary key, 
   ten_kieu_thue varchar(45)
 );
 create table dich_vu(
@@ -50,6 +54,8 @@ create table dich_vu(
   dien_tich int, 
   chi_phi_thue double, 
   so_nguoi_toi_da int, 
+  ma_kieu_thue int, 
+  ma_loai_dich_vu int, 
   tieu_chuan_phong varchar(45), 
   mo_ta_tien_nghi_khac varchar(45), 
   dien_tich_ho_boi double, 
@@ -65,9 +71,12 @@ create table dich_vu_di_kem(
 );
 create table hop_dong_chi_tiet(
   ma_hop_dong_chi_tiet int primary key, 
+  ma_hop_dong int, ma_dich_vu_di_kem int, 
   so_luong int
 );
 create table hop_dong(
   ma_hop_dong int primary key, ngay_lam_hop_dong datetime, 
-  ngay_ket_thuc datetime, tien_dat_coc double
-)
+  ngay_ket_thuc datetime, tien_dat_coc double, 
+  ma_nhan_vien int, ma_khach_hang int, 
+  ma_dich_vu int
+);
