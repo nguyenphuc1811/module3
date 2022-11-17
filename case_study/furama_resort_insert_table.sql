@@ -3,18 +3,21 @@ insert into vi_tri
 values 
   (1, 'Quản lý'), 
   (2, 'Nhân Viên');
+  
 INSERT INTO trinh_do 
 VALUES 
   ('1', 'Trung Cấp'), 
   ('2', 'Cao Đẳng'), 
   ('3', 'Đại Học'), 
   ('4', 'Sau Đại Học');
+  
 INSERT INTO bo_phan 
 VALUES 
   ('1', 'Sale-Marketing'), 
   ('2', 'Hành chính'), 
   ('3', 'Phục vụ'), 
   ('4', 'Quản lý');
+  
 INSERT INTO nhan_vien 
 VALUES 
   (
@@ -77,6 +80,7 @@ VALUES
     'nguyencongdao12@gmail.com', '6 Hoà Khánh, Đồng Nai', 
     '2', '3', '2'
   );
+  
 INSERT INTO `loai_khach` (
   `ma_loai_khach`, `ten_loai_khach`
 ) 
@@ -86,6 +90,7 @@ VALUES
   ('3', 'Gold'), 
   ('4', 'Silver'), 
   ('5', 'Member');
+  
 insert into khach_hang (
   ma_khach_hang, ma_loai_khach, ho_ten, 
   ngay_sinh, gioi_tinh, so_cmnd, so_dien_thoai, 
@@ -142,12 +147,14 @@ values
     1, '344343432', '0987654321', 'dactam@gmail.com', 
     '22 Ngô Quyền, Đà Nẵng'
   );
+  
 insert into kieu_thue (ma_kieu_thue, ten_kieu_thue) 
 values 
   (1, 'year'), 
   (2, 'month'), 
   (3, 'day'), 
   (4, 'hour');
+  
 insert into loai_dich_vu (
   ma_loai_dich_vu, ten_loai_dich_vu
 ) 
@@ -155,6 +162,7 @@ values
   (1, 'Villa'), 
   (2, 'House'), 
   (3, 'Room');
+  
 insert into dich_vu (
   ma_dich_vu, ten_dich_vu, dien_tich, 
   chi_phi_thue, so_nguoi_toi_da, ma_kieu_thue, 
@@ -193,6 +201,7 @@ values
     2, 4, 3, 'normal', 'Có tivi', null, 
     null, '1 xe máy'
   );
+  
 insert into dich_vu_di_kem (
   ma_dich_vu_di_kem, ten_dich_vu_di_kem, 
   gia, don_vi, trang_thai
@@ -221,6 +230,7 @@ values
     6, 'Buffet buổi tối', '16000', 
     'suất', 'đầy đủ đồ ăn, tráng miệng'
   );
+  
 insert into hop_dong (
   ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, 
   tien_dat_coc, ma_nhan_vien, ma_khach_hang, 
@@ -275,6 +285,7 @@ values
     12, '2021-05-25', '2021-05-27', 0, 
     7, 10, 1
   );
+  
 insert into hop_dong_chi_tiet (
   ma_hop_dong_chi_tiet, so_luong, ma_hop_dong, 
   ma_dich_vu_di_kem

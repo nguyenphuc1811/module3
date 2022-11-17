@@ -1,17 +1,21 @@
 create database furama_resort;
 use furama_resort;
+
 create table vi_tri(
   ma_vi_tri int primary key, 
   ten_vi_tri varchar(45)
 );
+
 create table trinh_do(
   ma_trinh_do int primary key, 
   ten_trinh_do varchar(45)
 );
+
 create table bo_phan(
   ma_bo_phan int primary key, 
   ten_bo_phan varchar(45)
 );
+
 create table nhan_vien(
   ma_nhan_vien int primary key, 
   ho_ten varchar(45) not null, 
@@ -28,10 +32,12 @@ create table nhan_vien(
   ma_bo_phan int, 
   FOREIGN KEY (ma_bo_phan) REFERENCES bo_phan(ma_bo_phan)
 );
+
 create table loai_khach(
   ma_loai_khach int primary key, 
   ten_loai_khach varchar(45)
 );
+
 create table khach_hang(
   ma_khach_hang int primary key, 
   ma_loai_khach int, 
@@ -44,14 +50,17 @@ create table khach_hang(
   email varchar(45), 
   dia_chi varchar(45)
 );
+
 create table loai_dich_vu(
   ma_loai_dich_vu int primary key, 
   ten_loai_dich_vu varchar(45)
 );
+
 create table kieu_thue(
   ma_kieu_thue int primary key, 
   ten_kieu_thue varchar(45)
 );
+
 create table dich_vu(
   ma_dich_vu int primary key, 
   ten_dich_vu varchar(45) not null, 
@@ -68,6 +77,7 @@ create table dich_vu(
   so_tang int, 
   dich_vu_mien_phi_di_kem text
 );
+
 create table dich_vu_di_kem(
   ma_dich_vu_di_kem int primary key, 
   ten_dich_vu_di_kem varchar(45) not null, 
@@ -75,6 +85,7 @@ create table dich_vu_di_kem(
   don_vi varchar(10) not null, 
   trang_thai varchar(45)
 );
+
 create table hop_dong(
   ma_hop_dong int primary key, 
   ngay_lam_hop_dong datetime not null, 
@@ -87,6 +98,7 @@ create table hop_dong(
   ma_dich_vu int, 
   foreign key (ma_dich_vu) references dich_vu(ma_dich_vu)
 );
+
 create table hop_dong_chi_tiet(
   ma_hop_dong_chi_tiet int primary key, 
   ma_hop_dong int, 
