@@ -1,0 +1,35 @@
+a{
+    text-decoration: none;
+    color: mediumblue;
+}
+sup {
+    color: blue;
+    font-size: xx-small;
+}
+p {
+    text-indent: 30px
+}
+
+#a {
+    color: dodgerblue
+}
+
+.b {
+    font-weight: bold;
+    color: black;
+}
+
+div {
+    position: relative;
+    width: 50%;
+    padding: 10px;
+    text-align: justify;
+    font-size: 15px;
+    top: 20px;
+}
+
+h1 {
+    position: fixed;
+    top: -21px;
+    left: 0;
+}
