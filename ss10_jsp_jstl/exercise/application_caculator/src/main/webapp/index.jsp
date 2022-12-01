@@ -19,7 +19,7 @@
     <div class="mb-3 row">
         <label class="col-sm-2 col-form-label">First operand</label>
         <div class="col-sm-2">
-            <input type="number" name="number1" class="form-control">
+            <input type="text" name="number1" class="form-control">
         </div>
     </div>
     <div class="mb-3 row">
@@ -36,7 +36,7 @@
     <div class="mb-3 row">
         <label class="col-sm-2 col-form-label">Second operand</label>
         <div class="col-sm-2">
-            <input type="number" name="number2" class="form-control">
+            <input type="text" name="number2" class="form-control">
         </div>
     </div>
     <div class="mb-3 row">
