@@ -22,8 +22,8 @@ create table `user`(
 );
 create table user_role(
   role_id int, 
-  username varchar(255), 
-  primary key(role_id, username), 
+  username varchar(255),
+  primary key(role_id,username),
   foreign key (role_id) references `role`(role_id), 
   foreign key (username) references `user`(username)
 );
@@ -36,11 +36,11 @@ create table employee(
   phone_number varchar(45) not null, 
   email varchar(45), 
   adress varchar(45), 
-  position_id int, 
+  position_id int not null, 
   FOREIGN KEY (position_id) REFERENCES `position`(id), 
-  education_degree_id int, 
+  education_degree_id int not null, 
   FOREIGN KEY (education_degree_id) REFERENCES education_degree(id), 
-  division_id int, 
+  division_id int not null, 
   FOREIGN KEY (division_id) REFERENCES division(id), 
   username varchar(25), 
   foreign key(username) references `user`(username)
@@ -75,9 +75,9 @@ create table facility(
   area int, 
   cost double not null, 
   max_people int, 
-  rent_type_id int, 
+  rent_type_id int not null, 
   foreign key (rent_type_id) references rent_type(id), 
-  facility_type_id int, 
+  facility_type_id int not null, 
   foreign key (facility_type_id) references facility_type(id), 
   standard_room varchar(45), 
   description_other_convenience varchar(45), 
@@ -97,18 +97,19 @@ create table contract(
   start_date datetime not null, 
   end_date datetime not null, 
   deposit double not null, 
-  employee_id int, 
+  employee_id int not null, 
   foreign key (employee_id) references employee(id), 
-  customer_id int, 
+  customer_id int not null, 
   foreign key (customer_id) references customer(id), 
-  facility_id int, 
+  facility_id int not null, 
   foreign key (facility_id) references facility(id)
 );
 create table contract_detail(
   id int primary key, 
-  contract_id int, 
+  contract_id int not null, 
   foreign key (contract_id) references contract(id), 
-  attach_facility_id int, 
+  attach_facility_id int not null, 
   foreign key (attach_facility_id) references attach_facility(id), 
   quanlity int not null
 );
+

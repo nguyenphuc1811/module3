@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "HomeServlet", urlPatterns = "/product")
+@WebServlet(name = "Controller.ProductServlet", urlPatterns = "/product")
 public class ProductServlet extends HttpServlet {
     IProductService productService = new ProductService();
 
@@ -51,6 +51,7 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "productDelete":
                 showDeleteForm(request, response);
+                break;
             default:
                 showList(request, response);
         }
