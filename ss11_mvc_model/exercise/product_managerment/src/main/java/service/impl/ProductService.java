@@ -8,10 +8,11 @@ import java.util.List;
 
 public class ProductService implements IProductService {
     private static List<Product> productList = new ArrayList<>();
+
     static {
-        productList.add(new Product(1,"Iphone",500,"Ngon","Apple"));
-        productList.add(new Product(2,"Samsung",400,"Bo","Samsung"));
-        productList.add(new Product(3,"Xiaomi",100,"re","China"));
+        productList.add(new Product(1, "Iphone", 500, "Ngon", "Apple"));
+        productList.add(new Product(2, "Samsung", 400, "Bo", "Samsung"));
+        productList.add(new Product(3, "Xiaomi", 100, "re", "China"));
     }
 
     @Override
@@ -25,17 +26,27 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public boolean delete(int id) {
-        for (Product product: productList) {
-            if(product.getId() == id){
-                return true;
+    public void delete(int id) {
+        int index = 0;
+        for (int i = 0; i < productList.size(); i++) {
+            if (id ==productList.get(i).getId()) {
+                index = i;
+                break;
             }
         }
-        return false;
+        productList.remove(index);
     }
 
     @Override
-    public void update( Product product) {
+    public void update(int id, Product product) {
+        int index = 0;
+        for (int i = 0; i < productList.size(); i++) {
+            if (id == productList.get(i).getId()) {
+                index = i;
+                break;
+            }
+        }
+        productList.set(index, product);
     }
 
     @Override
@@ -45,8 +56,8 @@ public class ProductService implements IProductService {
 
     @Override
     public Product findByName(String name) {
-        for (Product product: productList) {
-            if(product.getName().equals(name)){
+        for (Product product : productList) {
+            if (product.getName().equals(name)) {
                 return product;
             }
         }
