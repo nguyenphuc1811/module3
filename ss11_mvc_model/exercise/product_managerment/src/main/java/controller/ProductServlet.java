@@ -50,7 +50,7 @@ public class ProductServlet extends HttpServlet {
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         productService.delete(id);
-        response.sendRedirect("/product");
+        showList(request,response);
     }
 
     private void addProduct(HttpServletRequest request, HttpServletResponse response) {
@@ -98,7 +98,7 @@ public class ProductServlet extends HttpServlet {
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = this.productService.findById(id);
+        Product product = productService.findById(id);
         if (product != null) {
             request.setAttribute("product", product);
         }

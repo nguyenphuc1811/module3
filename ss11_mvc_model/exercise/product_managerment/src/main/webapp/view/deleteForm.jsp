@@ -12,12 +12,12 @@
     <title>Title</title>
 </head>
 <body>
+<form method="post" action="/product?action=?delete&id=${product.getId()}">
 Id: ${product.getId()}<br>
 Name: ${product.getName()}<br>
 Price: ${product.getPrice()}<br>
 Description: ${product.getDescription()}<br>
 Brand: ${product.getBrand()}<br>
-<form method="post" action="/product?action=?delete&id=${product.getId()}">
     <button type="submit">Confirm</button>
 </form>
 </body>

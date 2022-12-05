@@ -32,8 +32,8 @@
             <td>${product.getPrice()}</td>
             <td>${product.getDescription()}</td>
             <td>${product.getBrand()}</td>
-            <td><a href="${pageContext.request.contextPath}/product?action=edit&id=${product.getId()}">Edit</a> </td>
-            <td><a href="${pageContext.request.contextPath}/product?action=delete&id=${product.getId()}">Delete</a> </td>
+            <td><a href="/product?action=edit&id=${product.getId()}">Edit</a> </td>
+            <td><a href="/product?action=delete&id=${product.getId()}">Delete</a> </td>
         </tr>
     </c:forEach>
 </table>

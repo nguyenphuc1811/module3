@@ -17,7 +17,7 @@ public class ProductService implements IProductService {
 
     @Override
     public List<Product> findAll() {
-        return new ArrayList<>(productList);
+        return productList;
     }
 
     @Override
@@ -27,14 +27,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void delete(int id) {
-        int index = 0;
-        for (int i = 0; i < productList.size(); i++) {
-            if (id ==productList.get(i).getId()) {
-                index = i;
-                break;
-            }
-        }
-        productList.remove(index);
+       productList.remove(findById(id));
     }
 
     @Override
@@ -51,7 +44,12 @@ public class ProductService implements IProductService {
 
     @Override
     public Product findById(int id) {
-        return productList.get(id);
+        for (Product p: productList) {
+            if(id == p.getId()){
+                return p;
+            }
+        }
+        return null;
     }
 
     @Override
