@@ -36,6 +36,9 @@ public class UserServlet extends HttpServlet {
                 case "edit":
                     updateUser(request, response);
                     break;
+                case "delete":
+                    deleteUser(request,response);
+                    break;
                 case "search":
                     searchForCountry(request,response);
                     break;
