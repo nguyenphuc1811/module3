@@ -7,6 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
+<script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <html>
 <head>
     <title>Title</title>
@@ -19,7 +21,7 @@
         ${mess}
     </span>
     <form class="d-flex" method="post" action="/customer?action=search">
-        <input  name="name" class="form-control me-2" type="search" placeholder="Name" aria-label="Name">
+        <input name="name" class="form-control me-2" type="search" placeholder="Name" aria-label="Name">
         <select name="typeCustomer">
             <option value="1">Diamond</option>
             <option value="2">Platinium</option>
@@ -31,7 +33,7 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 </div>
-<table class="table table-striped table-hover" style="--bs-table-hover-bg: lightblue">
+<table class="table table-striped table-hover" style="--bs-table-hover-bg: lightblue" id="tableStudent">
     <thead>
     <tr class="bg-dark text-light">
         <th scope="col">STT</th>
@@ -42,9 +44,13 @@
         <th scope="col">Id Card</th>
         <th scope="col">Phone number</th>
         <th scope="col">Email</th>
-        <th scope="col" colspan="3">Address</th>
+        <th scope="col">Address</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+
     </tr>
     </thead>
+
     <tbody>
     <c:forEach var="customer" items="${list}" varStatus="ct">
         <tr>
@@ -86,6 +92,20 @@
     </tbody>
 </table>
 <%@include file="../footer.jsp" %>
+
+<script src="../../jquery/jquery-3.5.1.min.js"></script>
+<script src="../../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tableStudent').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        });
+    });
+</script>
+
 <div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">

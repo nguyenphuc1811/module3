@@ -13,5 +13,5 @@ public interface ICustomerRepo {
 
     boolean deleteCustomer(int id);
 
-    public List<Customer> searchCustomer(String name, int customerTypeId, String address);
+    List<Customer> searchCustomer(String name, int customerTypeId, String address);
 }
