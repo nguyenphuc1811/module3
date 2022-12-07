@@ -4,6 +4,28 @@ public class Customer {
     private int id;
     private int customerTypeId;
     private String name;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public Customer(int id, int customerTypeId, String name, String date, boolean gender, String idCard, String phoneNumber, String email, String address) {
+        this.id = id;
+        this.customerTypeId = customerTypeId;
+        this.name = name;
+        this.date = date;
+        this.gender = gender;
+        this.idCard = idCard;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     private boolean gender;
     private String idCard;
     private String phoneNumber;
@@ -32,6 +54,17 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Customer(int customerTypeId, String name, String date, boolean gender, String idCard, String phoneNumber, String email, String address) {
+        this.customerTypeId = customerTypeId;
+        this.name = name;
+        this.date = date;
+        this.gender = gender;
+        this.idCard = idCard;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
     }
 
     public boolean isGender() {
@@ -77,14 +110,4 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int id, int customerTypeId, String name, boolean gender, String idCard, String phoneNumber, String email, String address) {
-        this.id = id;
-        this.customerTypeId = customerTypeId;
-        this.name = name;
-        this.gender = gender;
-        this.idCard = idCard;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-    }
 }

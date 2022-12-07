@@ -14,9 +14,10 @@ public class CustomerRepo implements ICustomerRepo {
     private String jdbcPassword = "anhchangpro1";
 
     private static final String SELECT_ALL_CUSTOMER = "select * from customer";
-    private static final String ADD_CUSTOMER = "insert into customer values (?,?,?,?,?,?,?,?,?);";
-    private static final String EDIT_CUSTOMER = "update customer set customer_type_id =? ,name=?,gender=?,id_card = ?,phone_number =?,email =?,address =? where id = ?; "
-
+    private static final String ADD_CUSTOMER = "insert into customer (customer_type_id,name,date_of_birth,gender,id_card,phone_number,email,address) values (?,?,?,?,?,?,?,?);";
+    private static final String EDIT_CUSTOMER = "update customer set customer_type_id =? ,name=?,date_of_birth = ?,gender=?,id_card = ?,phone_number =?,email =?,address =? where id = ?; ";
+    private static final String DELETE_CUSTOMER = "delete from customer where id = ?;";
+    private static final String SEARCH_CUSTOMER = "";
     protected Connection getConnection() {
         Connection connection = null;
         try {
@@ -43,12 +44,13 @@ public class CustomerRepo implements ICustomerRepo {
                 int id = resultSet.getInt("id");
                 int customerTypeId = resultSet.getInt("customer_type_id");
                 String name = resultSet.getString("name");
+                String date = resultSet.getString("date_of_birth");
                 boolean gender = resultSet.getBoolean("gender");
                 String idCard = resultSet.getString("id_card");
                 String phoneNumber = resultSet.getString("phone_number");
                 String email = resultSet.getString("email");
                 String address = resultSet.getString("address");
-                list.add(new Customer(id, customerTypeId, name, gender, idCard, phoneNumber, email, address));
+                list.add(new Customer(id, customerTypeId, name, date, gender, idCard, phoneNumber, email, address));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -66,9 +68,9 @@ public class CustomerRepo implements ICustomerRepo {
             throwables.printStackTrace();
         }
         try {
-            ps.setInt(1, customer.getId());
-            ps.setInt(2, customer.getCustomerTypeId());
-            ps.setString(3, customer.getName());
+            ps.setInt(1, customer.getCustomerTypeId());
+            ps.setString(2, customer.getName());
+            ps.setString(3, customer.getDate());
             ps.setBoolean(4, customer.isGender());
             ps.setString(5, customer.getIdCard());
             ps.setString(6, customer.getPhoneNumber());
@@ -86,11 +88,32 @@ public class CustomerRepo implements ICustomerRepo {
         Connection connection = getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(EDIT_CUSTOMER);
-            preparedStatement.setInt(1,customer.getCustomerTypeId());
-            preparedStatement.setString();
+            preparedStatement.setInt(1, customer.getCustomerTypeId());
+            preparedStatement.setString(2, customer.getName());
+            preparedStatement.setBoolean(4, customer.isGender());
+            preparedStatement.setString(3, customer.getDate());
+            preparedStatement.setString(5, customer.getIdCard());
+            preparedStatement.setString(6, customer.getPhoneNumber());
+            preparedStatement.setString(7, customer.getEmail());
+            preparedStatement.setString(8, customer.getAddress());
+            preparedStatement.setInt(9, customer.getId());
+            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return false;
+    }
 
+    @Override
+    public boolean deleteCustomer(int id) {
+        Connection connection = getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement(DELETE_CUSTOMER);
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

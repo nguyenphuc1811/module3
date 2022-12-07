@@ -10,4 +10,6 @@ public interface ICustomerRepo {
     boolean addCustomer(Customer customer);
 
     boolean editCustomer(Customer customer);
+
+    boolean deleteCustomer(int id);
 }

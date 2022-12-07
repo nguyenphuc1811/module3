@@ -1,4 +1,4 @@
-use furama_resort;
+use furama_resort2;
 insert into vi_tri 
 values 
   (1, 'Quản lý'), 
@@ -91,11 +91,7 @@ VALUES
   ('4', 'Silver'), 
   ('5', 'Member');
   
-insert into khach_hang (
-  ma_khach_hang, ma_loai_khach, ho_ten, 
-  ngay_sinh, gioi_tinh, so_cmnd, so_dien_thoai, 
-  email, dia_chi
-) 
+insert into customer
 values 
   (
     1, 5, 'Nguyễn Thị Hào', '1970-11-07', 

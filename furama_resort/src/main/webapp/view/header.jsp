@@ -31,13 +31,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center ">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/home?action=home">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="http://localhost:63342/module3/cs_jsp_servlet/website/Employee.html?_ijt=3772jca8u0c5r6ajmcp311p5il">Employee</a>
+                    <a class="nav-link active" aria-current="page" href="#">Employee</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Customer</a>
+                    <a class="nav-link active" aria-current="page" href="/customer">Customer</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Service</a>

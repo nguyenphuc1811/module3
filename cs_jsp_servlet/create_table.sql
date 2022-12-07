@@ -17,7 +17,7 @@ create table `role`(
   role_name varchar(255)
 );
 create table `user`(
-  username varchar(255) primary key, 
+  username varchar(255) auto_increment primary key, 
   `password` varchar(255)
 );
 create table user_role(
@@ -28,7 +28,7 @@ create table user_role(
   foreign key (username) references `user`(username)
 );
 create table employee(
-  id int primary key, 
+  id int auto_increment primary key, 
   `name` varchar(45) not null, 
   date_of_birth date not null, 
   id_card varchar(45) not null, 
@@ -50,7 +50,7 @@ create table customer_type(
   name varchar(45)
 );
 create table customer(
-  id int primary key, 
+  id int auto_increment primary key, 
   customer_type_id int, 
   foreign key (customer_type_id) references customer_type(id), 
   `name` varchar(45) not null, 
@@ -70,7 +70,7 @@ create table rent_type(
   `name` varchar(45)
 );
 create table facility(
-  id int primary key, 
+  id int auto_increment primary key, 
   `name` varchar(45) not null, 
   area int, 
   cost double not null, 
@@ -86,14 +86,14 @@ create table facility(
   facility_free text
 );
 create table attach_facility(
-  id int primary key, 
+  id int auto_increment primary key, 
   `name` varchar(45) not null, 
   cost double not null, 
   unit varchar(10) not null, 
   `status` varchar(45)
 );
 create table contract(
-  id int primary key, 
+  id int auto_increment primary key, 
   start_date datetime not null, 
   end_date datetime not null, 
   deposit double not null, 
@@ -105,7 +105,7 @@ create table contract(
   foreign key (facility_id) references facility(id)
 );
 create table contract_detail(
-  id int primary key, 
+  id int auto_increment primary key, 
   contract_id int not null, 
   foreign key (contract_id) references contract(id), 
   attach_facility_id int not null, 
