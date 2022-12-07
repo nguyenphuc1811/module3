@@ -15,6 +15,7 @@ public class CustomerService implements ICustomerService {
        return customerRepo.selectAll();
     }
 
+
     @Override
     public boolean addCustomer(Customer customer) {
        return customerRepo.addCustomer(customer);
@@ -28,5 +29,10 @@ public class CustomerService implements ICustomerService {
     @Override
     public boolean deleteCustomer(int id) {
         return customerRepo.deleteCustomer(id);
+    }
+
+    @Override
+    public List<Customer> searchCustomer(String name, int customerTypeId, String address) {
+        return customerRepo.searchCustomer(name,customerTypeId,address);
     }
 }

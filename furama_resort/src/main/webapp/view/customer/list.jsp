@@ -12,14 +12,14 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="../header.jsp" %>
+<%@include file="/view/header.jsp" %>
 <div class="d-flex justify-content-between m-2">
     <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#add">Add</button>
-    <span aria-required="false" id="">
+    <span aria-required="false">
         ${mess}
     </span>
-    <form class="d-flex" method="get" action="/customer?action=search">
-        <input name="name" class="form-control me-2" type="search" placeholder="Search" aria-label="Name">
+    <form class="d-flex" method="post" action="/customer?action=search">
+        <input  name="name" class="form-control me-2" type="search" placeholder="Name" aria-label="Name">
         <select name="typeCustomer">
             <option value="1">Diamond</option>
             <option value="2">Platinium</option>
@@ -27,7 +27,7 @@
             <option value="4">Silver</option>
             <option value="5" selected>Member</option>
         </select>
-        <input name="address" class="form-control me-2" type="search" placeholder="Search" aria-label="Address">
+        <input name="address" class="form-control me-2" type="search" placeholder="Address" aria-label="Address">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 </div>

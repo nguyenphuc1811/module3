@@ -12,4 +12,6 @@ public interface ICustomerService {
     boolean editCustomer(Customer customer);
 
     boolean deleteCustomer(int id);
+
+    public List<Customer> searchCustomer(String name, int customerTypeId, String address);
 }

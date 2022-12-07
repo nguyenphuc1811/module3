@@ -31,6 +31,9 @@ public class CustomerServlet extends HttpServlet {
             case "edit":
                 editCustomer(request, response);
                 break;
+            case "search":
+                searchCustomer(request,response);
+                break;
             default:
                 showListCustomer(request, response);
         }
@@ -91,15 +94,24 @@ public class CustomerServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "search":
-                searchCustomer(request,response);
-                break;
             default:
                 showListCustomer(request, response);
         }
     }
 
     private void searchCustomer(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        int customerType =Integer.parseInt(request.getParameter("typeCustomer")) ;
+        String address = request.getParameter("address");
+        List<Customer> list =  customerService.searchCustomer(name,customerType,address);
+        request.setAttribute("list", list);
+        try {
+            request.getRequestDispatcher("/view/customer/list.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showListCustomer(HttpServletRequest request, HttpServletResponse response) {

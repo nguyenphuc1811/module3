@@ -15,7 +15,7 @@
 <body>
 <div class="row">
     <div class="col-lg-10">
-        <img src="pictures/Logo-FURAMA-RESORT.jpg" height="75" width="133">
+        <img src="../picture/logo.jpg" height="75" width="133">
     </div>
     <div class="col-lg-2 ">
         <p>Nguyễn Văn A</p>
@@ -40,7 +40,7 @@
                     <a class="nav-link active" aria-current="page" href="/customer">Customer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Service</a>
+                    <a class="nav-link active" aria-current="page" href="/facility">Service</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Contract</a>

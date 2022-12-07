@@ -17,7 +17,41 @@ public class CustomerRepo implements ICustomerRepo {
     private static final String ADD_CUSTOMER = "insert into customer (customer_type_id,name,date_of_birth,gender,id_card,phone_number,email,address) values (?,?,?,?,?,?,?,?);";
     private static final String EDIT_CUSTOMER = "update customer set customer_type_id =? ,name=?,date_of_birth = ?,gender=?,id_card = ?,phone_number =?,email =?,address =? where id = ?; ";
     private static final String DELETE_CUSTOMER = "delete from customer where id = ?;";
-    private static final String SEARCH_CUSTOMER = "";
+    private static final String SEARCH_CUSTOMER = "select * from customer where name like ? and customer_type_id = ? and address like ? ";
+
+    public List<Customer> searchCustomer(String name, int customerTypeId, String address) {
+        List<Customer> list = new ArrayList<>();
+        Connection connection = getConnection();
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(SEARCH_CUSTOMER);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            assert ps != null;
+            ps.setString(1, "%" + name + "%");
+            ps.setInt(2, customerTypeId);
+            ps.setString(3, "%" + address + "%");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                int customerType = resultSet.getInt("customer_type_id");
+                String nameCt = resultSet.getString("name");
+                String date = resultSet.getString("date_of_birth");
+                boolean gender = resultSet.getBoolean("gender");
+                String idCard = resultSet.getString("id_card");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String addressCt = resultSet.getString("address");
+                list.add(new Customer(id, customerType, nameCt, date, gender, idCard, phoneNumber, email, addressCt));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
     protected Connection getConnection() {
         Connection connection = null;
         try {
