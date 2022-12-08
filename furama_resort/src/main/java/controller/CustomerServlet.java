@@ -1,6 +1,6 @@
 package controller;
 
-import model.Customer;
+import model.customer.Customer;
 import service.ICustomerService;
 import service.impl.CustomerService;
 
@@ -28,6 +28,7 @@ public class CustomerServlet extends HttpServlet {
                 break;
             case "delete":
                 deleteCustomer(request, response);
+                break;
             case "edit":
                 editCustomer(request, response);
                 break;

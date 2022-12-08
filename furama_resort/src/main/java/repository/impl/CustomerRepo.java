@@ -1,27 +1,25 @@
 package repository.impl;
 
-import model.Customer;
+import model.customer.Customer;
+import repository.ConnectSQL;
 import repository.ICustomerRepo;
-import sun.applet.AppletResourceLoader;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerRepo implements ICustomerRepo {
-    private String jdbcURL = "jdbc:mysql://localhost:3306/furama_resort2?useSSL=false";
-    private String jdbcUsername = "root";
-    private String jdbcPassword = "anhchangpro1";
 
     private static final String SELECT_ALL_CUSTOMER = "select * from customer";
     private static final String ADD_CUSTOMER = "insert into customer (customer_type_id,name,date_of_birth,gender,id_card,phone_number,email,address) values (?,?,?,?,?,?,?,?);";
     private static final String EDIT_CUSTOMER = "update customer set customer_type_id =? ,name=?,date_of_birth = ?,gender=?,id_card = ?,phone_number =?,email =?,address =? where id = ?; ";
     private static final String DELETE_CUSTOMER = "delete from customer where id = ?;";
     private static final String SEARCH_CUSTOMER = "select * from customer where name like ? and customer_type_id = ? and address like ? ";
+    ConnectSQL connectSQL = new ConnectSQL();
 
     public List<Customer> searchCustomer(String name, int customerTypeId, String address) {
         List<Customer> list = new ArrayList<>();
-        Connection connection = getConnection();
+        Connection connection = connectSQL.getConnection();
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(SEARCH_CUSTOMER);
@@ -34,7 +32,7 @@ public class CustomerRepo implements ICustomerRepo {
             ps.setInt(2, customerTypeId);
             ps.setString(3, "%" + address + "%");
             ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 int customerType = resultSet.getInt("customer_type_id");
                 String nameCt = resultSet.getString("name");
@@ -52,25 +50,10 @@ public class CustomerRepo implements ICustomerRepo {
         return list;
     }
 
-    protected Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
     @Override
     public List<Customer> selectAll() {
         List<Customer> list = new ArrayList<>();
-        Connection connection = getConnection();
+        Connection connection = connectSQL.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CUSTOMER);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -86,15 +69,17 @@ public class CustomerRepo implements ICustomerRepo {
                 String address = resultSet.getString("address");
                 list.add(new Customer(id, customerTypeId, name, date, gender, idCard, phoneNumber, email, address));
             }
+            resultSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
         return list;
     }
 
     @Override
     public boolean addCustomer(Customer customer) {
-        Connection connection = getConnection();
+        Connection connection = connectSQL.getConnection();
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(ADD_CUSTOMER);
@@ -119,7 +104,7 @@ public class CustomerRepo implements ICustomerRepo {
 
     @Override
     public boolean editCustomer(Customer customer) {
-        Connection connection = getConnection();
+        Connection connection = connectSQL.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(EDIT_CUSTOMER);
             preparedStatement.setInt(1, customer.getCustomerTypeId());
@@ -140,11 +125,12 @@ public class CustomerRepo implements ICustomerRepo {
 
     @Override
     public boolean deleteCustomer(int id) {
-        Connection connection = getConnection();
+        Connection connection = connectSQL.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement(DELETE_CUSTOMER);
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

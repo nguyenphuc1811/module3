@@ -27,7 +27,7 @@
         </ul>
     </div>
     <div class="col-9">
-        <img src="../picture/home.jpg" height="579" width="100%"/>
+        <img  src="../picture/home.jpg" height="579" width="100%"/>
     </div>
 </div>
 <%@include file="footer.jsp"%>

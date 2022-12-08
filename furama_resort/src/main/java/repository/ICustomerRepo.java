@@ -1,6 +1,6 @@
 package repository;
 
-import model.Customer;
+import model.customer.Customer;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface ICustomerRepo {
 
     boolean editCustomer(Customer customer);
 
-    boolean deleteCustomer(int id);
+    boolean deleteCustomer(int id); 
 
     List<Customer> searchCustomer(String name, int customerTypeId, String address);
 }
