@@ -19,6 +19,44 @@ public class FacilityRepo implements IFacilityRepo {
     private static final String ADD_FACILITY = "INSERT INTO facility(name,area,cost,max_people,rent_type_id,facility_type_id,standard_room,description_other_convenience,pool_area,number_of_floors,facility_free) values (?,?,?,?,?,?,?,?,?,?,?)";
     private static final String EDIT_FACILITY = "update facility set name = ? , area = ? , cost = ? , max_people = ? , rent_type_id = ? ,facility_type_id = ? , standard_room = ?,description_other_convenience = ? , pool_area =? , number_of_floors = ? , facility_free = ? where id = ?;";
     private static final String DELETE_FACILITY = "delete from facility where id = ?;";
+    private static final String RENT_TYPE = "select * from rent_type";
+    private static final String FACILITY_TYPE = "select * from facility_type";
+
+    @Override
+    public List<FacilityType> selectFacilityType() {
+        Connection connection = connectSQL.getConnection();
+        List<FacilityType> list = new ArrayList<>();
+        try {
+            PreparedStatement ps = connection.prepareStatement(FACILITY_TYPE);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String name =rs.getString("name");
+                list.add(new FacilityType(id,name));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<RentType> selectRentType(){
+        Connection connection = connectSQL.getConnection();
+        List<RentType> list = new ArrayList<>();
+        try {
+            PreparedStatement ps = connection.prepareStatement(RENT_TYPE);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String name =rs.getString("name");
+                list.add(new RentType(id,name));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
 
     @Override
     public List<Facility> selectAll() {
@@ -91,7 +129,7 @@ public class FacilityRepo implements IFacilityRepo {
             ps.setDouble(9, facility.getPoolArea());
             ps.setInt(10, facility.getNumberOfFloor());
             ps.setString(11, facility.getFacilityFree());
-            ps.setInt(12,facility.getId());
+            ps.setInt(12, facility.getId());
             return ps.executeUpdate() > 0;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -100,11 +138,11 @@ public class FacilityRepo implements IFacilityRepo {
     }
 
     @Override
-    public boolean deleteFacility(int id){
+    public boolean deleteFacility(int id) {
         Connection connection = connectSQL.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement(DELETE_FACILITY);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -43,7 +43,7 @@
                     <a class="nav-link active" aria-current="page" href="/facility">Service</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Contract</a>
+                    <a class="nav-link active" aria-current="page" href="/view/contract/contract.jsp">Contract</a>
                 </li>
             </ul>
             <form class="d-flex">

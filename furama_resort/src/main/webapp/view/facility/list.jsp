@@ -95,7 +95,7 @@
     </div>
 </div>
 <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
@@ -103,6 +103,12 @@
             </div>
             <form method="post" action="/facility?action=add">
                 <div class="modal-body">
+                    <div>
+                        <input hidden name="facilityType" id="">
+                        <button onclick="hideList(1)" id="1">House</button>
+                        <button onclick="hideList(2)" id="2">Villa</button>
+                        <button onclick="hideList(3)" id="3">Room</button>
+                    </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Name</span>
                         <input type="text" class="form-control" aria-label="Sizing example input"
@@ -126,15 +132,18 @@
                     <div>
                         <select class="form-select" aria-label="Default select example">
                             <option>Rent Type</option>
-                            <option value="1">Year</option>
-                            <option value="2">Month</option>
-                            <option value="3">Day</option>
-                            <option value="4">Hour</option>
+                            <c:forEach var="rt" items="${rentType}">
+                                <option name="rentTypeId" value="${rt.getId()}">${rt.getName()}</option>
+                            </c:forEach>
                         </select>
                     </div>
-                    <div>
-                        <span class="input-group-text">Standard</span>
-                        Vip<input type="radio">
+                    <div class="row">
+                        <p class="col-2 input-group-text">Standard Room</p>
+                        <div class="s- col-3">
+                            Vip<input name="standardRoom" value="Vip" type="radio"> Normal <input name="standardRoom"
+                                                                                                  type="radio"
+                                                                                                  value="Normal">
+                        </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Description</span>
@@ -166,7 +175,6 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save Add</button>
                 </div>
-
             </form>
         </div>
     </div>
@@ -176,6 +184,14 @@
     function deleteModal(id, name) {
         document.getElementById("id").value = id;
         document.getElementById("name").innerText = name;
+    }
+
+    function hideList(number) {
+        if (a == 1) {
+            document.getElementById("asd").style.display = "none";
+        } else {
+            document.getElementById("asd").style.display = "block";
+        }
     }
 </script>
 </body>

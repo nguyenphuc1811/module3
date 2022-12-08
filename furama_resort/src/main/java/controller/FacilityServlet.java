@@ -1,6 +1,7 @@
 package controller;
 
 import model.facility.Facility;
+import model.facility.RentType;
 import service.IFacilityService;
 import service.impl.FacilityService;
 
@@ -55,6 +56,8 @@ public class FacilityServlet extends HttpServlet {
     private void showList(HttpServletRequest request, HttpServletResponse response) {
         List<Facility> list = facilityService.selectAll();
         request.setAttribute("list",list);
+        List<RentType> typeList = facilityService.selectRentType();
+        request.setAttribute("rentType",typeList);
         try {
             request.getRequestDispatcher("/view/facility/list.jsp").forward(request,response);
         } catch (ServletException e) {
