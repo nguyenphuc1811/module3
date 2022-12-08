@@ -133,7 +133,8 @@
                         </select>
                     </div>
                     <div>
-                        StandardRoom
+                        <span class="input-group-text">Standard</span>
+                        Vip<input type="radio">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Description</span>
