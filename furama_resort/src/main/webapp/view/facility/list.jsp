@@ -6,8 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="../bootstrap-5.1.3-dist/css/bootstrap.css">
-<script src="../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+<link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.css">
+<script src="../../bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -17,7 +17,7 @@
 <%@include file="../header.jsp" %>
 <div class="d-flex justify-content-between m-2">
     <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#add">Add</button>
-    <span>${mess}</span>
+    <span class="bg-danger" >${mess}</span>
     <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -95,80 +95,85 @@
     </div>
 </div>
 <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Facility</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="post" action="/facility?action=add">
                 <div class="modal-body">
                     <div>
-                        <input hidden name="facilityType" id="">
-                        <button onclick="hideList(1)" id="1">House</button>
-                        <button onclick="hideList(2)" id="2">Villa</button>
-                        <button onclick="hideList(3)" id="3">Room</button>
+                        <input hidden name="facilityType" id="facilityType">
+                        <button type="button" onclick="hideList(1)" id="1">Villa</button>
+                        <button type="button" onclick="hideList(2)" id="2">House</button>
+                        <button type="button" onclick="hideList(3)" id="3">Room</button>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Name</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
+                        <input name = "name" type="text" class="form-control" aria-label="Sizing example input"
                                aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Area</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="area" type="text" class="form-control" aria-label="Sizing example input"
                                aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Cost</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="cost" type="text" class="form-control" aria-label="Sizing example input"
                                aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Max People</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="maxPeople" type="text" class="form-control" aria-label="Sizing example input"
                                aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div>
-                        <select class="form-select" aria-label="Default select example">
+                        <select name="rentType" class="form-select mb-3" aria-label="Default select example">
                             <option>Rent Type</option>
                             <c:forEach var="rt" items="${rentType}">
                                 <option name="rentTypeId" value="${rt.getId()}">${rt.getName()}</option>
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="row">
-                        <p class="col-2 input-group-text">Standard Room</p>
-                        <div class="s- col-3">
-                            Vip<input name="standardRoom" value="Vip" type="radio"> Normal <input name="standardRoom"
-                                                                                                  type="radio"
-                                                                                                  value="Normal">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text me-3">Standard Room</span>
+                        <div class="col-4">
+                            <span class="h6">Vip</span> <input class="btn-group" name="standardRoom" value="vip" type="radio"> <span class="h6">Normal</span>
+                            <input class="btn-group" name="standardRoom"
+                                   type="radio"
+                                   value="normal" checked>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Description</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-default">
+                    <div id="house">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Description</span>
+                            <input name="description" type="text" class="form-control" aria-label="Sizing example input"
+                                   aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Pool Area</span>
+                            <input name="poolArea" type="text" class="form-control" aria-label="Sizing example input"
+                                   aria-describedby="inputGroup-sizing-default">
+                        </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Pool Area</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-default">
-                    </div>
-                    <div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option>Floor</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Facility Free</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-default">
+                    <div id="room">
+                        <div>
+                            <select name="floor" class="form-select mb-3" aria-label="Default select example">
+                                <option value="0">Floor</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Facility Free</span>
+                            <input name="facilityFree" type="text" class="form-control" aria-label="Sizing example input"
+                                   aria-describedby="inputGroup-sizing-default">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -187,10 +192,18 @@
     }
 
     function hideList(number) {
-        if (a == 1) {
-            document.getElementById("asd").style.display = "none";
+        document.getElementById("facilityType").value = number;
+        let room = document.getElementById("room");
+        let house = document.getElementById("house");
+        if (number === 1) {
+            room.style.display = "block";
+            house.style.display = "block";
+        } else if (number === 2) {
+            room.style.display = "none";
+            house.style.display = "block";
         } else {
-            document.getElementById("asd").style.display = "block";
+            room.style.display = "none";
+            house.style.display = "none";
         }
     }
 </script>

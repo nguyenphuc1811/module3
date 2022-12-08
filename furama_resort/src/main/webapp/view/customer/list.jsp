@@ -23,11 +23,12 @@
     <form class="d-flex" method="post" action="/customer?action=search">
         <input name="name" class="form-control me-2" type="search" placeholder="Name" aria-label="Name">
         <select name="typeCustomer">
+            <option>Type Customer</option>
             <option value="1">Diamond</option>
             <option value="2">Platinium</option>
             <option value="3">Gold</option>
             <option value="4">Silver</option>
-            <option value="5" selected>Member</option>
+            <option value="5">Member</option>
         </select>
         <input name="address" class="form-control me-2" type="search" placeholder="Address" aria-label="Address">
         <button class="btn btn-outline-success" type="submit">Search</button>

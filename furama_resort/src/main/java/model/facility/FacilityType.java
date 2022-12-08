@@ -12,6 +12,10 @@ public class FacilityType {
     public FacilityType() {
     }
 
+    public FacilityType(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

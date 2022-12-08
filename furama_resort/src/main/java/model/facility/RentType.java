@@ -12,6 +12,10 @@ public class RentType {
         this.name = name;
     }
 
+    public RentType(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

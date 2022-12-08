@@ -102,7 +102,7 @@ public class CustomerServlet extends HttpServlet {
 
     private void searchCustomer(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
-        int customerType =Integer.parseInt(request.getParameter("typeCustomer")) ;
+        int customerType =Integer.parseInt(request.getParameter("typeCustomer"));
         String address = request.getParameter("address");
         List<Customer> list =  customerService.searchCustomer(name,customerType,address);
         request.setAttribute("list", list);
